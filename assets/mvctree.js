@@ -1749,7 +1749,7 @@ define('mvctree/templates/components/definitions-showcase', ['exports'], functio
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
-        dom.setAttribute(el2,"class","col-xs-12 col-md-6");
+        dom.setAttribute(el2,"class","hidden-sm col-md-6");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
@@ -1789,7 +1789,18 @@ define('mvctree/templates/components/definitions-showcase', ['exports'], functio
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
-        dom.setAttribute(el1,"class","col-xs-12 col-md-6");
+        dom.setAttribute(el1,"class","col-md-6");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","visible-sm-block");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("ul");
@@ -1828,12 +1839,15 @@ define('mvctree/templates/components/definitions-showcase', ['exports'], functio
         } else {
           fragment = this.build(dom);
         }
+        var element2 = dom.childAt(fragment, [11]);
         var morph0 = dom.createMorphAt(dom.childAt(fragment, [3, 3]),1,1);
         var morph1 = dom.createMorphAt(dom.childAt(fragment, [7, 1]),1,1);
-        var morph2 = dom.createMorphAt(dom.childAt(fragment, [11, 1]),1,1);
+        var morph2 = dom.createMorphAt(dom.childAt(element2, [1]),1,1);
+        var morph3 = dom.createMorphAt(dom.childAt(element2, [3]),1,1);
         inline(env, morph0, context, "view", ["select"], {"content": get(env, context, "availablePatterns"), "value": get(env, context, "selectedPatternId"), "prompt": "compare to:", "optionValuePath": "content.id", "optionLabelPath": "content.name", "class": "form-control"});
         block(env, morph1, context, "each", [get(env, context, "currDefinitions")], {"keyword": "definition"}, child0, null);
-        block(env, morph2, context, "each", [get(env, context, "selectedPattern.definitions")], {"keyword": "definition"}, child1, null);
+        inline(env, morph2, context, "view", ["select"], {"content": get(env, context, "availablePatterns"), "value": get(env, context, "selectedPatternId"), "prompt": "compare to:", "optionValuePath": "content.id", "optionLabelPath": "content.name", "class": "form-control"});
+        block(env, morph3, context, "each", [get(env, context, "selectedPattern.definitions")], {"keyword": "definition"}, child1, null);
         return fragment;
       }
     };
@@ -3634,16 +3648,11 @@ define('mvctree/templates/svg', ['exports'], function (exports) {
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createTextNode("  ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createComment(" \n    possible bug \n        class=\"{{unbound pathObj.classNames}}\"\n  ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n  ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
+          var el1 = dom.createComment(" \n    TODO: bug with: \n        class=\"{{unbound pathObj.classNames}}\"\n        class=\"line line-dashed\"\n  ");
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n  ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("path");
-          dom.setAttribute(el1,"class","line line-dashed");
           dom.setAttribute(el1,"stroke-dasharray","5, 5");
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -3652,7 +3661,7 @@ define('mvctree/templates/svg', ['exports'], function (exports) {
         },
         render: function render(context, env, contextualElement) {
           var dom = env.dom;
-          var hooks = env.hooks, get = hooks.get, inline = hooks.inline, subexpr = hooks.subexpr, concat = hooks.concat, attribute = hooks.attribute;
+          var hooks = env.hooks, get = hooks.get, subexpr = hooks.subexpr, concat = hooks.concat, attribute = hooks.attribute;
           dom.detectNamespace(contextualElement);
           var fragment;
           if (env.useFragmentCache && dom.canClone) {
@@ -3670,11 +3679,11 @@ define('mvctree/templates/svg', ['exports'], function (exports) {
           } else {
             fragment = this.build(dom);
           }
-          var element0 = dom.childAt(fragment, [5]);
-          var morph0 = dom.createMorphAt(fragment,3,3,contextualElement);
+          var element0 = dom.childAt(fragment, [3]);
           var attrMorph0 = dom.createAttrMorph(element0, 'd');
-          inline(env, morph0, context, "log", [get(env, context, "pathObj.classNames")], {});
+          var attrMorph1 = dom.createAttrMorph(element0, 'class');
           attribute(env, attrMorph0, element0, "d", concat(env, [subexpr(env, context, "unbound", [get(env, context, "pathObj.path")], {})]));
+          attribute(env, attrMorph1, element0, "class", concat(env, [subexpr(env, context, "unbound", [get(env, context, "pathObj.classNames")], {})]));
           return fragment;
         }
       };
