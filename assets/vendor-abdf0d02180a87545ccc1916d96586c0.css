@@ -1,4 +1,4 @@
-/*!
+.lazy-image-container{position:relative;min-height:200px}.lazy-image-container img{z-index:0;opacity:0}.lazy-image-container.loaded img{opacity:1}.lazy-image-error-message{position:absolute;top:50%;right:50%}.lazy-image-container.loaded .lazy-image-error-message,.lazy-image-container.loaded .lazy-image-placeholder{display:none}.lazy-image-placeholder{position:absolute;top:50%;right:50%}/*!
  * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
