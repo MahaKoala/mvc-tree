@@ -13,6 +13,17 @@ module('Acceptance: Index', {
   },
 
   afterEach: function() {
+    var store = application.registry.lookup('store:main');
+    //var store = this.store(); 
+    Ember.run(function() {
+      console.log('NODES');
+      var model = store.all('node-technology');
+      model.forEach(function(item) {
+        console.log(item.toJSON());
+        store.unloadRecord(item);
+      });
+
+    });
     Ember.run(application, 'destroy');
   }
 });
